@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Expert Interview Analyzer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          // Token system built from the client-supplied palette: near-black
+          // navy through mid-blues to warm parchment. "navy" is the bold
+          // move (header/footer cover bands); everything else stays quiet.
+          paper: "#F3EAD9",
+          white: "#FBF6E9",
+          ink: "#13151F",
+          navy: "#1E2E45",
+          slate: "#54697F",
+          steel: "#8098B8",
+          line: "#DBCCA6",
+          accent: "#2C4560",
+          accentSoft: "#E4E9EF",
+          verified: "#3C6E52",
+          verifiedSoft: "#E7EFE7",
+          warn: "#9C6B33",
+          warnSoft: "#F3E7D2",
+        },
+        fontFamily: {
+          sans: ["IBM Plex Sans", "ui-sans-serif", "system-ui", "Segoe UI", "Helvetica", "Arial", "sans-serif"],
+          display: ["Fraunces", "ui-serif", "Georgia", "serif"],
+        },
+      },
+    },
+  };
+</script>
+<style>
+  body { background: #F3EAD9; }
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-thumb { background: #D9C9A0; border-radius: 4px; }
+  .quote { border-left: 2px solid #2C4560; padding-left: 0.75rem; }
+  .tab-btn[data-active="true"] { color: #13151F; border-color: #2C4560; }
+  .tab-btn[data-active="false"] { color: #54697F; border-color: transparent; }
+  textarea, input[type="text"], input[type="password"] {
+    outline: none;
+  }
+  textarea:focus, input:focus, select:focus, button:focus-visible {
+    box-shadow: 0 0 0 2px #2C4560;
+  }
+  .status-dot { width: 7px; height: 7px; border-radius: 999px; display: inline-block; }
+</style>
+</head>
+<body class="font-sans text-ink antialiased">
+
+  <div class="min-h-screen flex flex-col">
+    <!-- Top bar: the one deliberately bold element -- a cover-page band -->
+    <header class="bg-navy sticky top-0 z-20 border-b border-steel/20">
+      <div class="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
+        <div>
+          <h1 class="font-display text-white text-xl tracking-tight">Expert Interview Analyzer</h1>
+          <p class="text-sm text-steel mt-0.5">Grounded Q&amp;A and cross-expert comparison for interview transcripts</p>
+        </div>
+        <div id="header-status" class="text-sm text-steel"></div>
+      </div>
+    </header>
+
+    <div class="max-w-6xl mx-auto w-full px-6 py-8 flex-1 grid grid-cols-1 lg:grid-cols-[280px_1fr] gap-8">
+
+      <!-- Sidebar: configuration -->
+      <aside class="space-y-6">
+        <section class="border border-line rounded-md p-4 bg-white/60">
+          <h2 class="text-sm font-semibold mb-3">Model</h2>
+          <label class="block text-xs text-slate mb-1">Groq model</label>
+          <select id="model-select" class="w-full border border-line rounded px-2 py-1.5 text-sm bg-white"></select>
+        </section>
+
+        <section class="border border-line rounded-md p-4 bg-white/60">
+          <h2 class="text-sm font-semibold mb-3">Interview guide</h2>
+          <label class="block text-xs text-slate mb-1">Project objective</label>
+          <textarea id="objective" rows="3" class="w-full border border-line rounded px-2 py-1.5 text-sm mb-3 bg-white"></textarea>
+          <label class="block text-xs text-slate mb-1">Questions (one per line)</label>
+          <textarea id="questions" rows="8" class="w-full border border-line rounded px-2 py-1.5 text-sm bg-white"></textarea>
+        </section>
+      </aside>
+
+      <!-- Main content -->
+      <main class="min-w-0">
+
+        <!-- Upload panel -->
+        <section id="upload-panel" class="space-y-6">
+          <div class="border border-line rounded-md p-4 bg-white/60">
+            <div class="flex items-center justify-between mb-2">
+              <h3 class="text-sm font-semibold">Previous analyses</h3>
+              <span class="text-xs text-slate">Persisted with ChromaDB -- resume without re-uploading or re-running</span>
+            </div>
+            <div id="previous-analyses-list" class="space-y-2">
+              <p class="text-xs text-slate">Loading...</p>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="border border-line rounded-md p-4 bg-white/60" data-expert-card="0">
+              <h3 class="text-sm font-semibold mb-2">Expert 1</h3>
+              <input type="text" class="expert-name w-full border border-line rounded px-2 py-1.5 text-sm mb-2 bg-white" value="Expert 1" />
+              <input type="file" accept=".txt,.vtt,.srt" class="expert-file w-full text-sm" />
+              <p class="expert-file-status text-xs text-slate mt-2">No file selected</p>
+            </div>
+            <div class="border border-line rounded-md p-4 bg-white/60" data-expert-card="1">
+              <h3 class="text-sm font-semibold mb-2">Expert 2</h3>
+              <input type="text" class="expert-name w-full border border-line rounded px-2 py-1.5 text-sm mb-2 bg-white" value="Expert 2" />
+              <input type="file" accept=".txt,.vtt,.srt" class="expert-file w-full text-sm" />
+              <p class="expert-file-status text-xs text-slate mt-2">No file selected</p>
+            </div>
+            <div class="border border-line rounded-md p-4 bg-white/60" data-expert-card="2">
+              <h3 class="text-sm font-semibold mb-2">Expert 3</h3>
+              <input type="text" class="expert-name w-full border border-line rounded px-2 py-1.5 text-sm mb-2 bg-white" value="Expert 3" />
+              <input type="file" accept=".txt,.vtt,.srt" class="expert-file w-full text-sm" />
+              <p class="expert-file-status text-xs text-slate mt-2">No file selected</p>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3">
+            <button id="analyze-btn" class="bg-accent text-white text-sm font-medium px-4 py-2 rounded hover:bg-navy disabled:opacity-40 disabled:cursor-not-allowed transition-colors">
+              Analyze transcripts
+            </button>
+            <span id="analyze-status" class="text-sm text-slate"></span>
+          </div>
+
+          <div id="error-box" class="hidden border border-warn bg-warnSoft text-warn text-sm rounded px-3 py-2"></div>
+        </section>
+
+        <!-- Results (hidden until analysis completes) -->
+        <section id="results-panel" class="hidden">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex gap-1 border-b border-line" id="tab-bar"></div>
+            <button id="new-analysis-btn" class="text-sm text-slate hover:text-ink underline underline-offset-2">
+              New analysis
+            </button>
+          </div>
+          <div id="tab-content"></div>
+        </section>
+
+      </main>
+    </div>
+
+    <footer class="bg-navy mt-auto">
+      <div class="max-w-6xl mx-auto px-6 py-4 text-xs text-steel">
+        Every answer is grounded in the uploaded transcripts and cites the exact segment it came from.
+        Unverified quotes are never shown.
+      </div>
+    </footer>
+  </div>
+
+<script src="app.js"></script>
+</body>
+</html>

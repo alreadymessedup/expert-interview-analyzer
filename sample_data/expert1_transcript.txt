@@ -1,0 +1,12 @@
+[00:01:05] Interviewer: Thanks for joining. To start, how would you describe current adoption of robotic surgery in your market?
+[00:01:22] Dr. Hoffmann: In Germany, adoption is concentrated in large university hospitals and a handful of private hospital groups. Maybe 25 to 30 percent of tertiary hospitals have at least one system, mostly in urology and general surgery. Regional and smaller hospitals have almost none.
+[00:02:40] Interviewer: What are the main barriers to adoption for the smaller hospitals?
+[00:02:48] Dr. Hoffmann: Capital cost is the biggest one. A system plus service contract is a multi-million euro commitment, and smaller hospitals simply don't have the case volume to justify it. There's also a shortage of trained surgeons willing to relocate to smaller centers.
+[00:04:10] Interviewer: How important are hospital budgets and ROI in the purchasing decision?
+[00:04:18] Dr. Hoffmann: Extremely important, probably the deciding factor in 8 out of 10 cases. Procurement committees want a business case showing payback within 5 to 7 years through case volume and reduced length of stay. If that case can't be made, it doesn't matter how good the clinical data is.
+[00:06:02] Interviewer: And how important are surgeon training and clinical outcomes in that decision?
+[00:06:11] Dr. Hoffmann: They matter, but honestly they come second to the financial case in my experience. Clinical outcomes get cited to justify a decision that's already been made on financial grounds. Training capacity is a real constraint though -- credentialing a surgeon can take six to twelve months.
+[00:08:15] Interviewer: What adoption trend do you expect over the next 3 to 5 years?
+[00:08:22] Dr. Hoffmann: I expect steady growth, maybe doubling the number of installed systems, but concentrated in the same large hospital groups rather than spreading to smaller ones. Newer, lower-cost systems entering the market could change that if their pricing holds.
+[00:10:01] Interviewer: What's the typical hospital decision-making timeline for purchasing a new robotic system?
+[00:10:09] Dr. Hoffmann: From first business case to signed contract, usually 12 to 18 months. It goes through the procurement committee, then the hospital board, and often needs sign-off from the regional health authority if public funding is involved.

@@ -1,0 +1,12 @@
+[00:00:40] Interviewer: How would you describe current adoption of robotic surgery in your market?
+[00:00:55] Ms. Patel: In the UK, NHS adoption has accelerated over the last three years, largely driven by a national push to reduce waiting lists. Most large NHS trusts now have at least one system, mainly used in colorectal and gynaecological surgery. The private sector adopted earlier and more broadly.
+[00:03:02] Interviewer: What are the main barriers to adoption?
+[00:03:10] Ms. Patel: Within the NHS, capital budgets are centrally constrained, so trusts often rely on charitable donations or leasing arrangements rather than outright purchase. Staff time for training is also a barrier -- theatre lists are already full, so finding time to train surgeons without cutting into throughput is hard.
+[00:05:18] Interviewer: How important are hospital budgets and ROI in purchasing decisions?
+[00:05:26] Ms. Patel: It's important but the calculation is different from a private hospital. NHS trusts weight it against waiting list reduction and national targets as much as pure financial ROI. A system that clearly cuts patient waiting times can get approved even with a longer payback period.
+[00:07:30] Interviewer: How important are surgeon training and clinical outcomes?
+[00:07:38] Ms. Patel: Very important, and I'd actually say this is the primary driver in the NHS context, more than pure financials. There's strong clinical leadership pushing for robotic adoption because of demonstrated reductions in complication rates and length of stay, and that clinical case is what gets a business case moving.
+[00:09:44] Interviewer: What adoption trend do you expect over the next 3 to 5 years?
+[00:09:52] Ms. Patel: I expect fairly rapid growth, faster than Germany or similar markets, because there's explicit national policy support. I'd expect most large trusts to have multiple systems within five years, with expansion into general surgery and thoracic procedures.
+[00:11:20] Interviewer: What's the typical hospital decision-making timeline for purchasing a new robotic system?
+[00:11:28] Ms. Patel: It varies a lot. A leasing or managed-service arrangement can be approved in as little as 6 months. An outright capital purchase requiring trust board and sometimes NHS England sign-off can take 18 months or more.

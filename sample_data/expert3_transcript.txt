@@ -1,0 +1,23 @@
+Interviewer: How would you describe current adoption of robotic surgery in your market?
+
+Dr. Lefevre: In France, adoption is growing but remains behind the UK. It is concentrated in Paris and a few other major metropolitan centers, mostly in urology and increasingly in digestive surgery. Public hospitals move more slowly than private clinics.
+
+Interviewer: What are the main barriers to adoption?
+
+Dr. Lefevre: Reimbursement is the biggest issue here. Unlike some other markets, there isn't yet a dedicated reimbursement code that fully covers the added cost of robotic procedures, so hospitals absorb some of the cost themselves. That makes procurement committees cautious.
+
+Interviewer: How important are hospital budgets and ROI in purchasing decisions?
+
+Dr. Lefevre: Very important, arguably the single most important factor for public hospitals. Private clinics can justify purchases more easily based on attracting patients and surgeons, but public hospitals need a very clear multi-year financial case before a purchase is approved.
+
+Interviewer: How important are surgeon training and clinical outcomes?
+
+Dr. Lefevre: Important, but I would put it below the financial question. Outcomes data is used to support a request, not usually to initiate one. Surgeon interest does matter though -- a hospital with a surgeon strongly advocating for a system internally moves much faster through the process.
+
+Interviewer: What adoption trend do you expect over the next 3 to 5 years?
+
+Dr. Lefevre: I expect moderate growth, slower than the UK, unless reimbursement policy changes. If a dedicated reimbursement code is introduced, I would expect a noticeably faster uptake, especially outside the major cities.
+
+Interviewer: What's the typical hospital decision-making timeline for purchasing a new robotic system?
+
+Dr. Lefevre: Generally 12 to 24 months for public hospitals, sometimes longer if it needs regional health agency approval. Private clinics can move faster, sometimes under a year, if the ownership group decides to invest.
