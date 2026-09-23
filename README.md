@@ -17,7 +17,7 @@ python3 -m venv .venv
 source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 
-cp .env.example .env             # Windows: copy .env.example .env
+add .env             
 # then edit .env and set GROQ_API_KEY=gsk_... (get one at console.groq.com/keys)
 
 uvicorn server:app --reload
@@ -58,23 +58,6 @@ each request and never touches the server's environment.
    /api/chat`). **Raw transcripts** is there so you can always double-check
    a citation by eye.
 
-### Supported transcript formats
-
-- Plain text with inline timestamps: `[00:12:34] Dr. Muller: ...`,
-  `00:12:34 - Dr. Muller: ...`, etc.
-- Plain text with the timestamp alone on its own line, followed by
-  `Speaker: text` on the next line — a common manual-transcription and
-  auto-transcription export shape:
-  ```
-  00:00
-  Dr. Martin: Adoption is growing...
-  ```
-- WebVTT / SRT exports from Zoom, Teams, Otter, etc. (`-->` cue lines)
-- Plain text with no timestamps at all — segments are still numbered and
-  citable, the UI just labels them "no timestamps detected" and cites
-  `[segment N]` instead of a time.
-
----
 
 ## Architecture
 
@@ -147,36 +130,7 @@ for the "retrieval instead of context-stuffing" scaling item below: adding
 real embeddings later to power search only touches `core/store.py`, nothing
 about how segments are stored changes.
 
-## Model choice
 
-Default: **`llama-3.3-70b-versatile`** on Groq. Rationale for this task
-specifically:
-
-- Long context (131K tokens) — a ~45-60 min interview transcript is a few
-  thousand words; three of them stuffed into one prompt for the chat
-  feature still comfortably fits.
-- Groq's LPU inference is very fast, which matters here because the app
-  makes several sequential calls per run (one per expert, plus the
-  cross-analysis pass) — fast inference keeps the "Analyze transcripts"
-  button from feeling like a long wait.
-- Solid instruction-following for the "only use what's in this document,
-  cite everything, say 'not discussed' rather than guess" style of prompt
-  at a much lower cost than a frontier model, which suits a task that's
-  fundamentally extraction + comparison rather than deep multi-step
-  reasoning.
-- Native JSON mode (`response_format={"type": "json_object"}`) backs the
-  structured-output parsing this app relies on throughout.
-
-`openai/gpt-oss-120b` is offered in the model picker for tougher
-cross-expert synthesis if the 70B model's output feels thin; the smaller
-`llama-3.1-8b-instant` is offered for cheap/fast iteration while testing
-prompts, at some quality cost on the harder cross-expert step.
-
-Because grounding discipline (not raw benchmark intelligence) is what this
-task most depends on, and that's driven primarily by the prompt/schema/
-verification design in `pipeline.py` and `verify.py`, swapping the
-underlying model provider is a one-file change (`core/llm.py`) — the rest
-of the app is provider-agnostic.
 
 ## How citations/timestamps are handled
 
